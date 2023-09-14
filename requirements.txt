@@ -1,0 +1,3 @@
+telethon
+aiohttp
+cashews==6.2.0
