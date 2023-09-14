@@ -14,7 +14,7 @@ class GroupAnalyticsHandler:
         self.client = client
 
     async def get(self, request: web.Request):
-        if cid_str := request.match_info.get('cid'):
+        if cid_str := request.query.get('cid'):
             try:
                 uid = int(cid_str)
                 await self.client.get_entity(uid)
