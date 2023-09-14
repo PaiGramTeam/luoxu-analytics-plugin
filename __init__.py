@@ -28,7 +28,7 @@ class GroupAnalyticsHandler:
 
 
 async def register(indexer, client: TelegramClient):
-    port: int = int(indexer.config['plugin_analytics']['port'])
+    port: int = int(indexer.config['plugin']['analytics']['port'])
 
     handler = GroupAnalyticsHandler(client)
 

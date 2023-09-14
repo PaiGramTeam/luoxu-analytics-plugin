@@ -1,2 +1,4 @@
-[plugin_analytics]
+[plugin]
+[plugin.analytics]
+enabled = true
 port = 9010
