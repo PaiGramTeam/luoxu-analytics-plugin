@@ -10,8 +10,9 @@ logger = logging.getLogger('luoxu_plugins.analytics')
 
 
 class GroupAnalyticsHandler:
-    def __init__(self, client):
+    def __init__(self, client, db):
         self.client = client
+        self.db = db
 
     async def get(self, request: web.Request):
         if cid_str := request.query.get('cid'):
@@ -22,7 +23,7 @@ class GroupAnalyticsHandler:
                 raise web.HTTPForbidden(headers={
                     'Cache-Control': 'public, max-age=86400',
                 })
-            return web.json_response(await get_group_data(uid, self.client))
+            return web.json_response(await get_group_data(uid, self.client, self.db))
         else:
             raise web.HTTPNotFound
 
@@ -30,7 +31,7 @@ class GroupAnalyticsHandler:
 async def register(indexer, client: TelegramClient):
     port: int = int(indexer.config['plugin']['analytics']['port'])
 
-    handler = GroupAnalyticsHandler(client)
+    handler = GroupAnalyticsHandler(client, indexer.dbstore)
 
     app = web.Application()
     app.router.add_get('/api/group_analytics', handler.get)

@@ -1,3 +1,4 @@
 telethon
 aiohttp
+asyncpg
 cashews==6.2.0
