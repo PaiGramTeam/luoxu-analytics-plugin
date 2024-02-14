@@ -40,6 +40,6 @@ async def register(indexer, client: TelegramClient):
     await runner.setup()
     site = web.TCPSite(
         runner,
-        '127.0.0.1', port,
+        indexer.config['web']['listen_host'], port,
     )
     await site.start()
