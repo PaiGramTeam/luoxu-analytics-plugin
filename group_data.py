@@ -2,6 +2,10 @@ from typing import List, Dict, Optional
 
 import asyncpg
 
+from .utils import pip_install
+
+pip_install("cashews")
+
 from cashews import cache
 from telethon import TelegramClient
 from telethon.errors import StatsMigrateError
